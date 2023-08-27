@@ -1,13 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
+    <PropertyGroup Condition="'$(UseMacOs)'!=''">
         <OutputType>Exe</OutputType>
-        <TargetFrameworks>net6.0</TargetFrameworks>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <PublishTrimmed>true</PublishTrimmed>
+        
+        <TargetFramework>net6.0-macos</TargetFramework>
+        <ApplicationId>com.example.app</ApplicationId>
+        <SupportedOSPlatformVersion>10.14</SupportedOSPlatformVersion>
     </PropertyGroup>
 
-    <PropertyGroup>
+    <PropertyGroup Condition="'$(UseMacOs)'==''">
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
         <PublishTrimmed>true</PublishTrimmed>
         <PublishReadyToRun>false</PublishReadyToRun>
         <PublishSingleFile>true</PublishSingleFile>
@@ -17,15 +20,14 @@
         <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
         <DebugType>embedded</DebugType>
         <UseAppHost>true</UseAppHost>
+    </PropertyGroup>    
+    
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
-
-
+    
     <ItemGroup>
       <ProjectReference Include="..\SharedLib\SharedLib.csproj" />
     </ItemGroup>
-
-    <PropertyGroup Condition="'$(AssemblyNameSuffix)' != ''">
-        <AssemblyName>$(AssemblyName)-$(AssemblyNameSuffix)</AssemblyName>
-    </PropertyGroup>
-    
 </Project>
