@@ -1,6 +1,11 @@
 # PoC of NET 6.0 'hello world' app published as Apple's universal binary
 
+The app consists of a shared lib (to mimic the design of my actual cross-platform project) and an entry point (executable) for Mac OS.
+IRL, there would also be a separate entry point module for Linux that configures DI the the proper way, but it is not needed for  the PoC.
+
 To build the app, clone the repository and run ```build.sh```
+
+The size of the single file supporting both Intel and Apple silicone is about 22 MB (~11 MB per each architecture), which seems in line with that other people see.
 
 ## Prerequisites
 
